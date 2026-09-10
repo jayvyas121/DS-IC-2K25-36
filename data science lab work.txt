@@ -2,34 +2,102 @@
 
 
 
-PROBLEM:- Insert an element in an array
 
 
+PROBLEM:- Find the sum of all elements in a 2D array	
 
 
 #include <iostream>
 using namespace std;
 
 int main() {
-    int A[100] = {10, 20, 30, 40, 50};
-    int n = 5, pos, value;
+    int A[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
 
-    cout << "Enter position: ";
-    cin >> pos;
+    int sum = 0;
 
-    cout << "Enter value: ";
-    cin >> value;
-
-    for (int i = n; i >= pos; i--) {
-        A[i] = A[i - 1];
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            sum += A[i][j];
+        }
     }
 
-    A[pos - 1] = value;
-    n++;
+    cout << "Sum = " << sum;
 
-    cout << "Array after insertion: ";
-    for (int i = 0; i < n; i++)
-        cout << A[i] << " ";
+    return 0;
+}
+
+
+
+
+PROBLEM:-Implement stack using an array
+
+
+
+#include <iostream>
+using namespace std;
+
+#define MAX 5
+
+class Stack {
+    int A[MAX];
+    int top;
+
+public:
+    Stack() {
+        top = -1;
+    }
+
+    void push(int x) {
+        if (top == MAX - 1) {
+            cout << "Stack Overflow\n";
+        }
+        else {
+            A[++top] = x;
+        }
+    }
+
+    void pop() {
+        if (top == -1) {
+            cout << "Stack Underflow\n";
+        }
+        else {
+            cout << "Deleted: " << A[top--] << endl;
+        }
+    }
+
+    void peek() {
+        if (top == -1)
+            cout << "Stack is empty\n";
+        else
+            cout << "Top element: " << A[top] << endl;
+    }
+
+    void display() {
+        for (int i = top; i >= 0; i--)
+            cout << A[i] << " ";
+        cout << endl;
+    }
+};
+
+int main() {
+    Stack s;
+
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+
+    s.display();
+
+    s.peek();
+
+    s.pop();
+
+    s.display();
 
     return 0;
 }
@@ -39,59 +107,29 @@ int main() {
 
 
 
-PROBLEM:-  Delete an element from an array
+
+PROBLEM:- Create a stack with size M and put the element in this array A B C D E and find the peak element of the stack.
 
 
 
 #include <iostream>
+#include <stack>
 using namespace std;
 
 int main() {
-    int A[100] = {10, 20, 30, 40, 50};
-    int n = 5, pos;
+    int M = 5;
 
-    cout << "Enter position to delete: ";
-    cin >> pos;
+    stack<char> s;
 
-    for (int i = pos - 1; i < n - 1; i++) {
-        A[i] = A[i + 1];
+    char A[] = {'A', 'B', 'C', 'D', 'E'};
+
+    // Push elements into stack
+    for (int i = 0; i < M; i++) {
+        s.push(A[i]);
     }
 
-    n--;
-
-    cout << "Array after deletion: ";
-    for (int i = 0; i < n; i++)
-        cout << A[i] << " ";
+    // Peek/Top element
+    cout << "Top element of stack: " << s.top() << endl;
 
     return 0;
 }
-
-
-
-
-
-
-PROBLEM:- Find the largest element
-
-
-#include <iostream>
-using namespace std;
-
-int main() {
-    int A[] = {10, 45, 23, 67, 12};
-    int n = 5;
-
-    int max = A[0];
-
-    for (int i = 1; i < n; i++) {
-        if (A[i] > max)
-            max = A[i];
-    }
-
-    cout << "Largest element = " << max;
-
-    return 0;
-}
-
-
-
